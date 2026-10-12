@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dan Bakery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fffaf6;
+            color: #49332f;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #fff;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px #0000000a;
+        }
+
+        .logo {
+            color: #bd7181;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #49332f;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #bd7181;
+        }
+
+        .hero {
+            min-height: 480px;
+            padding: 70px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            background: #f9e7e8;
+        }
+
+        .hero-content {
+            max-width: 520px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.15;
+            margin: 15px 0;
+        }
+
+        .hero p {
+            margin-bottom: 25px;
+            color: #755c57;
+        }
+
+        .hero img {
+            width: 42%;
+            max-width: 400px;
+            border-radius: 50% 50% 15px 15px;
+            object-fit: cover;
+        }
+
+        .tag {
+            color: #bd7181;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 13px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #bd7181;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #965565;
+            color: white;
+        }
+
+        section {
+            padding: 65px 8%;
+            scroll-margin-top: 75px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #8c7770;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px #55352a0d;
+            transition: transform .2s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            width: 100%;
+            height: 210px;
+            object-fit: contain;
+            padding: 12px;
+            background: #fff2f0;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-info h3 {
+            font-size: 18px;
+        }
+
+        .product-info p {
+            font-size: 13px;
+            color: #88736d;
+            margin: 8px 0;
+        }
+
+        .price {
+            color: #bd7181;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .product .btn {
+            padding: 9px 17px;
+            font-size: 13px;
+        }
+
+        .gallery {
+            background: #f9e7e8;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-content img {
+            width: 45%;
+            border-radius: 15px;
+        }
+
+        .about-content h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .about-content p {
+            color: #755c57;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            background: #f9e7e8;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 1px solid #e4c9c8;
+            border-radius: 8px;
+            font: inherit;
+            background: white;
+        }
+
+        .contact textarea {
+            resize: vertical;
+        }
+
+        footer {
+            text-align: center;
+            background: #49332f;
+            color: white;
+            padding: 30px 15px;
+        }
+
+        footer p {
+            color: #ead6d2;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                padding: 18px 5%;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0;
+                font-size: 13px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 6%;
+            }
+
+            .hero img {
+                width: 85%;
+            }
+
+            section {
+                padding: 45px 6%;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product img {
+                height: 250px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid img {
+                height: 250px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-content img {
+                width: 100%;
+            }
+
+            .section-title h2 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">dan bekery</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#products">Cakes</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="tag">FRESHLY BAKED WITH LOVE</span>
+            <h1>A Little Sweetness in Every Bite.</h1>
+            <p>
+                Delicious cakes made with love for your special
+                moments. Make every celebration sweeter with us!
+            </p>
+            <a href="#products" class="btn">Explore Our Cakes</a>
+        </div>
+
+        <img src="image/background.png" alt="Delicious bakery cake">
+    </section>
+
+    <section id="products">
+        <div class="section-title">
+            <span class="tag">OUR SPECIALTIES</span>
+            <h2>Our Best-Selling Cakes</h2>
+            <p>Sweet treats for every occasion.</p>
+        </div>
+
+        <div class="products">
+
+            <div class="product">
+                <img src="image/c1.png" alt="Cream cake">
+                <div class="product-info">
+                    <h3>Strawberry Cream Cake</h3>
+                    <p>Soft cake with creamy, fruity goodness.</p>
+                    <div class="price">650.00</div>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="image/c2.png" alt="Chocolate cake">
+                <div class="product-info">
+                    <h3>Chocolate Cake</h3>
+                    <p>Rich chocolate flavor in every slice.</p>
+                    <div class="price">350.00</div>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="image/c3.png" alt="Cake slice">
+                <div class="product-info">
+                    <h3>Classic Cake Slice</h3>
+                    <p>A delightful treat for your sweet cravings.</p>
+                    <div class="price">100.00</div>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="image/c9.png" alt="Birthday cake">
+                <div class="product-info">
+                    <h3>Birthday Cake</h3>
+                    <p>Make your celebrations extra special.</p>
+                    <div class="price">550.00</div>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="section-title">
+            <span class="tag">MADE WITH LOVE</span>
+            <h2>Our Gallery</h2>
+            <p>A little look at our sweet creations.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <img src="image/o1.png" alt="Fresh donuts">
+            <img src="image/o2.png" alt="Sweet dessert">
+            <img src="image/o3.png" alt="Cupcakes">
+            <img src="image/o4.png" alt="Delicious cake">
+            <img src="image/o5.png" alt="Chocolate cake">
+            <img src="image/o6.png" alt="Cake slice">
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-content">
+            <img src="image/about.png" alt="Our bakery">
+
+            <div>
+                <span class="tag">OUR STORY</span>
+                <h2>Baked With Love, Served With Joy</h2>
+                <p>
+                    Welcome to Sweet Crumbs Bakery! We believe
+                    every celebration deserves a delicious cake.
+                    Our treats are made with care to bring smiles
+                    to your family and friends.
+                </p>
+                <p>
+                    From birthdays to simple everyday moments,
+                    we're here to make life a little sweeter.
+                </p>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <span class="tag">LET'S TALK</span>
+            <h2>Contact Us</h2>
+            <p>Have a sweet idea? Send us a message!</p>
+        </div>
+
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="text" placeholder="Cake you want to order">
+            <textarea rows="5" placeholder="Your Message"
+                      required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+        <p id="formMessage" style="text-align:center; margin-top:15px;"></p>
+    </section>
+
+    <footer>
+        <h2>dan Bakery</h2>
+        <p>Made with love for all your sweet moments.</p>
+        <p>Sweet Crumbs Bakery. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("contactForm")
+            .addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                document.getElementById("formMessage").textContent =
+                    "Thank you! The demo form has been submitted.";
+
+                this.reset();
+            });
+    </script>
+
+</body>
+</html>
