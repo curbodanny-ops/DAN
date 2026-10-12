@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dan Bakery Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9e7e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #49332f;
+        }
+
+        .login-box {
+            background: white;
+            width: 350px;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #49332f20;
+            text-align: center;
+        }
+
+        h1 {
+            color: #bd7181;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #8c7770;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #e4c9c8;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #bd7181;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #bd7181;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #965565;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h1>Dan Bakery</h1>
+        <p>Please log in to continue.</p>
+
+        <form id="loginForm">
+            <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                required
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+            >
+
+            <button type="submit">Log In</button>
+
+            <div id="message"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm")
+            .addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const username =
+                    document.getElementById("username").value;
+
+                const password =
+                    document.getElementById("password").value;
+
+                if (username === "admin" && password === "12345") {
+                    document.getElementById("message").style.color = "green";
+                    document.getElementById("message").textContent =
+                        "Login successful! Welcome to Dan Bakery.";
+
+                    // Redirect to your homepage if needed:
+                    // window.location.href = "home.html";
+                } else {
+                    document.getElementById("message").style.color = "red";
+                    document.getElementById("message").textContent =
+                        "Incorrect username or password!";
+                }
+            });
+    </script>
+
+</body>
+</html>

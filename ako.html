@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dan Bakery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fffaf6;
+            color: #49332f;
+            line-height: 1.6;
+        }
+
+        /* LOGIN PAGE */
+        #loginPage {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f9e7e8, #fffaf6);
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px #49332f18;
+            text-align: center;
+        }
+
+        .login-box h1 {
+            color: #bd7181;
+            margin-bottom: 5px;
+            font-size: 30px;
+        }
+
+        .login-box .subtitle {
+            color: #8c7770;
+            margin-bottom: 25px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 1px solid #e4c9c8;
+            border-radius: 8px;
+            font: inherit;
+            outline: none;
+        }
+
+        .login-box input:focus {
+            border-color: #bd7181;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 65px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 13px;
+            border: none;
+            background: transparent;
+            color: #bd7181;
+            cursor: pointer;
+        }
+
+        .login-box .btn {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .login-message {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #965565;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #bd7181;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* GENERAL */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #bd7181;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn:hover {
+            background: #965565;
+            color: white;
+        }
+
+        /* WEBSITE */
+        #website {
+            display: none;
+        }
+
+        header {
+            background: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px #0000000a;
+        }
+
+        .logo {
+            color: #bd7181;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #49332f;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #bd7181;
+        }
+
+        .logout-btn {
+            border: none;
+            background: #bd7181;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .hero {
+            min-height: 480px;
+            padding: 70px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            background: #f9e7e8;
+        }
+
+        .hero-content {
+            max-width: 520px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.15;
+            margin: 15px 0;
+        }
+
+        .hero p {
+            margin-bottom: 25px;
+            color: #755c57;
+        }
+
+        .hero img {
+            width: 42%;
+            max-width: 400px;
+            border-radius: 50% 50% 15px 15px;
+            object-fit: cover;
+        }
+
+        .tag {
+            color: #bd7181;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 13px;
+        }
+
+        section {
+            padding: 65px 8%;
+            scroll-margin-top: 85px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #8c7770;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px #55352a0d;
+            transition: transform .2s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            width: 100%;
+            height: 210px;
+            object-fit: contain;
+            padding: 12px;
+            background: #fff2f0;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-info h3 {
+            font-size: 18px;
+        }
+
+        .product-info p {
+            font-size: 13px;
+            color: #88736d;
+            margin: 8px 0;
+        }
+
+        .price {
+            color: #bd7181;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .product .btn {
+            padding: 9px 17px;
+            font-size: 13px;
+        }
+
+        .gallery {
+            background: #f9e7e8;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-content img {
+            width: 45%;
+            border-radius: 15px;
+        }
+
+        .about-content h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .about-content p {
+            color: #755c57;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            background: #f9e7e8;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 1px solid #e4c9c8;
+            border-radius: 8px;
+            font: inherit;
+            background: white;
+        }
+
+        .contact textarea {
+            resize: vertical;
+        }
+
+        footer {
+            text-align: center;
+            background: #49332f;
+            color: white;
+            padding: 30px 15px;
+        }
+
+        footer p {
+            color: #ead6d2;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                padding: 18px 5%;
+            }
+
+            .hero img {
+                max-width: 350px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 6%;
+            }
+
+            .hero img {
+                width: 85%;
+            }
+
+            section {
+                padding: 45px 6%;
+            }
+
+            .products,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product img,
+            .gallery-grid img {
+                height: 250px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-content img {
+                width: 100%;
+            }
+
+            .section-title h2 {
+                font-size: 27px;
+            }
+
+            .login-box {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div id="loginPage">
+        <div class="login-box">
+            <h1>dan Bakery</h1>
+            <p class="subtitle">Welcome back! Please log in.</p>
+
+            <form id="loginForm">
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter your email"
+                    autocomplete="username"
+                    required
+                >
+
+                <div class="password-wrapper">
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+                    <button
+                        type="button"
+                        class="toggle-password"
+                        id="togglePassword"
+                    >Show</button>
+                </div>
+
+                <button type="submit" class="btn">Log In</button>
+
+                <p id="loginMessage"
+                   class="login-message"
+                   role="status"></p>
+            </form>
+
+            <a href="#"
+               class="back-link"
+               id="guestLink">Continue as Guest</a>
+        </div>
+    </div>
+
+    <!-- BAKERY WEBSITE -->
+    <div id="website">
+
+        <header>
+            <div class="logo">dan Bakery</div>
+
+            <nav>
+			    <a href="#login">login</a> 
+                <a href="#home">Home</a>
+                <a href="#products">Cakes</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <button class="logout-btn" id="logoutBtn">Log Out</button>
+            </nav>
+        </header>
+
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="tag">FRESHLY BAKED WITH LOVE</span>
+                <h1>A Little Sweetness in Every Bite.</h1>
+                <p>
+                    Delicious cakes made with love for your special
+                    moments. Make every celebration sweeter with us!
+                </p>
+                <a href="#products" class="btn">Explore Our Cakes</a>
+            </div>
+
+            <img src="image/background.png"
+                 alt="Delicious bakery cake">
+        </section>
+
+        <section id="products">
+            <div class="section-title">
+                <span class="tag">OUR SPECIALTIES</span>
+                <h2>Our Best-Selling Cakes</h2>
+                <p>Sweet treats for every occasion.</p>
+            </div>
+
+            <div class="products">
+
+                <div class="product">
+                    <img src="image/c1.png" alt="Strawberry cream cake">
+                    <div class="product-info">
+                        <h3>Strawberry Cream Cake</h3>
+                        <p>Soft cake with creamy, fruity goodness.</p>
+                        <div class="price">?650.00</div>
+                        <a href="#contact" class="btn"
+                           data-cake="Strawberry Cream Cake">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="image/c2.png" alt="Chocolate cake">
+                    <div class="product-info">
+                        <h3>Chocolate Cake</h3>
+                        <p>Rich chocolate flavor in every slice.</p>
+                        <div class="price">?350.00</div>
+                        <a href="#contact" class="btn"
+                           data-cake="Chocolate Cake">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="image/c3.png" alt="Classic cake slice">
+                    <div class="product-info">
+                        <h3>Classic Cake Slice</h3>
+                        <p>A delightful treat for your sweet cravings.</p>
+                        <div class="price">?100.00</div>
+                        <a href="#contact" class="btn"
+                           data-cake="Classic Cake Slice">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="image/c9.png" alt="Birthday cake">
+                    <div class="product-info">
+                        <h3>Birthday Cake</h3>
+                        <p>Make your celebrations extra special.</p>
+                        <div class="price">?550.00</div>
+                        <a href="#contact" class="btn"
+                           data-cake="Birthday Cake">Order Now</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="gallery" id="gallery">
+            <div class="section-title">
+                <span class="tag">MADE WITH LOVE</span>
+                <h2>Our Gallery</h2>
+                <p>A little look at our sweet creations.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <img src="image/o1.png" alt="Fresh donuts">
+                <img src="image/o2.png" alt="Sweet dessert">
+                <img src="image/o3.png" alt="Cupcakes">
+                <img src="image/o4.png" alt="Delicious cake">
+                <img src="image/o5.png" alt="Chocolate cake">
+                <img src="image/o6.png" alt="Cake slice">
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="about-content">
+                <img src="image/about.png" alt="Our bakery">
+
+                <div>
+                    <span class="tag">OUR STORY</span>
+                    <h2>Baked With Love, Served With Joy</h2>
+                    <p>
+                        Welcome to Dan Bakery! We believe every
+                        celebration deserves a delicious cake.
+                        Our treats are made with care to bring
+                        smiles to your family and friends.
+                    </p>
+                    <p>
+                        From birthdays to simple everyday moments,
+                        we're here to make life a little sweeter.
+                    </p>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="section-title">
+                <span class="tag">LET'S TALK</span>
+                <h2>Contact Us</h2>
+                <p>Have a sweet idea? Send us a message!</p>
+            </div>
+
+            <form id="contactForm">
+                <input type="text" id="customerName"
+                       placeholder="Your Name" required>
+
+                <input type="email" id="customerEmail"
+                       placeholder="Your Email" required>
+
+                <input type="text" id="cakeOrder"
+                       placeholder="Cake you want to order">
+
+                <textarea id="customerMessage" rows="5"
+                          placeholder="Your Message" required></textarea>
+
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+
+            <p id="formMessage"
+               style="text-align:center; margin-top:15px;"
+               role="status"></p>
+        </section>
+
+        <div class="login-container">
+    <h2>Welcome!</h2>
+
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="text" id="password" placeholder="Enter password" required>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <div id="message"></div>
+    </form>
+  </div>
+
+  <script>
+    const USERNAME = "DANNY";
+    const PASSWORD = "CURBO";
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const message = document.getElementById("message");
+
+      if (username === USERNAME && password === PASSWORD) {
+        message.style.color = "lime";
+        message.textContent = "Login successful!";
+
+        setTimeout(function() {
+          window.location.href = "home.html";
+        }, 1000);
+
+      } else {
+        message.style.color = "red";
+        message.textContent = "Invalid username or password.";
+      }
+    });
+  </script>
+
+</body>
+</html>
+

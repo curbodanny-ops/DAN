@@ -1,0 +1,508 @@
+
+/* ==========================================
+   WOW BAKESHOP - PREMIUM 3D REDESIGN
+   Chocolate x Caramel x Gold
+========================================== */
+
+:root {
+    --chocolate: #2e1700;
+    --brown: #573818;
+    --caramel: #c98532;
+    --gold: #ffda8a;
+    --cream: #fff2d8;
+}
+
+/* SMOOTH PAGE */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--chocolate);
+}
+
+.all-content {
+    background:
+        radial-gradient(ellipse at top, #633b1b 0%, #2e1700 65%);
+    overflow: hidden;
+}
+
+/* 3D BUTTON BASE DESIGN */
+button,
+.content .btn,
+#btnorder button,
+#bt button,
+#messagebtn button,
+#product-cards h6 span button {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    background: linear-gradient(
+        145deg,
+        #f5c16a 0%,
+        #bd7928 45%,
+        #78400e 100%
+    );
+    color: #fffaf0;
+    font-weight: 800;
+    text-shadow: 0 1px 2px #572b08;
+    box-shadow:
+        0 6px 0 #54290b,
+        0 10px 18px rgba(0, 0, 0, .4),
+        inset 0 2px 2px rgba(255,255,255,.45),
+        inset 0 -3px 5px rgba(65,25,0,.3);
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+    cursor: pointer;
+}
+
+/* SHIMMER EFFECT */
+button::before,
+.content .btn::before,
+#btnorder button::before,
+#bt button::before,
+#messagebtn button::before,
+#product-cards h6 span button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 45%;
+    height: 200%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.5),
+        transparent
+    );
+    transform: rotate(25deg);
+    transition: left .65s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+button:hover::before,
+.content .btn:hover::before,
+#btnorder button:hover::before,
+#bt button:hover::before,
+#messagebtn button:hover::before,
+#product-cards h6 span button:hover::before {
+    left: 150%;
+}
+
+/* BUTTON FLOAT + 3D PRESS */
+button:hover,
+.content .btn:hover,
+#btnorder button:hover,
+#bt button:hover,
+#messagebtn button:hover,
+#product-cards h6 span button:hover {
+    transform: translateY(-4px) scale(1.035);
+    filter: brightness(1.12);
+    box-shadow:
+        0 10px 0 #54290b,
+        0 18px 28px rgba(0, 0, 0, .45),
+        0 0 18px rgba(255, 193, 106, .2),
+        inset 0 2px 3px rgba(255,255,255,.5);
+}
+
+button:active,
+.content .btn:active,
+#btnorder button:active,
+#bt button:active,
+#messagebtn button:active,
+#product-cards h6 span button:active {
+    transform: translateY(4px) scale(.98);
+    box-shadow:
+        0 2px 0 #54290b,
+        0 4px 8px rgba(0, 0, 0, .3);
+}
+
+/* NAVBAR - GOLDEN GLASS */
+#navbar {
+    background: linear-gradient(
+        135deg,
+        #241204,
+        #68421f,
+        #39200d
+    );
+    padding: 15px 40px;
+    border-bottom: 1px solid rgba(255,218,138,.55);
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.4),
+        inset 0 -1px 0 rgba(255,255,255,.08);
+}
+
+#logo {
+    color: var(--gold);
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 0 #6b390e, 0 0 15px #bd792855;
+}
+
+.nav-link {
+    display: inline-block;
+    position: relative;
+    color: var(--cream);
+    transition: .3s ease;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+    transition: .3s ease;
+}
+
+.nav-link:hover {
+    background: transparent;
+    color: var(--gold);
+    transform: translateY(-3px);
+}
+
+.nav-link:hover::after {
+    width: 75%;
+    left: 12.5%;
+}
+
+/* HERO SECTION */
+.home {
+    min-height: 88.5vh;
+    background-position: center;
+    background-attachment: scroll;
+    isolation: isolate;
+}
+
+.home .img img {
+    filter: drop-shadow(0 25px 22px rgba(0,0,0,.45));
+    animation: cakeFloat 4s ease-in-out infinite;
+}
+
+@keyframes cakeFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+    50% {
+        transform: translateY(-14px) rotate(1deg);
+    }
+}
+
+.content h3,
+.content h2 {
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+.content h3 {
+    color: var(--cream);
+    text-shadow: 0 4px 0 #381b08, 0 8px 20px #000;
+}
+
+.content h2 {
+    color: var(--gold);
+    text-shadow:
+        0 2px 0 #9c591d,
+        0 5px 0 #5a2d0b,
+        0 10px 20px rgba(0,0,0,.65);
+}
+
+.changecontent::after {
+    color: var(--gold);
+    text-shadow: 0 0 20px #c9853266;
+}
+
+/* HERO BUTTON */
+.content .btn {
+    min-width: 145px;
+    height: 46px;
+    padding: 10px 20px;
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+/* PREMIUM SECTION HEADINGS */
+#product-cards h1,
+#gallary h1,
+#about h1,
+#contact h1 {
+    color: var(--gold);
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold),
+        transparent
+    ) 1;
+    text-shadow: 0 3px 0 #4a260d, 0 6px 15px #000;
+    padding-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+/* 3D FEATURE CARDS */
+#box .card,
+#product-cards .card,
+#gallary .card,
+#about .card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,218,138,.45);
+    border-radius: 18px;
+    box-shadow:
+        0 8px 0 #241204,
+        0 15px 25px rgba(0,0,0,.3),
+        inset 0 1px 0 rgba(255,255,255,.25);
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+#box .card:hover,
+#product-cards .card:hover,
+#gallary .card:hover,
+#about .card:hover {
+    transform: translateY(-10px) rotateX(2deg);
+    box-shadow:
+        0 13px 0 #241204,
+        0 25px 35px rgba(0,0,0,.45),
+        0 0 20px rgba(201,133,50,.18);
+}
+
+#product-cards .card {
+    background: linear-gradient(145deg, #f5c16a, #a65c20);
+}
+
+#product-cards .card img,
+#box .card img,
+#gallary .card img {
+    transition: transform .55s ease;
+}
+
+#product-cards .card:hover img,
+#box .card:hover img,
+#gallary .card:hover img {
+    transform: scale(1.07);
+}
+
+#product-cards h3 {
+    color: #fff6e5;
+    text-shadow: 0 2px 4px #48240a;
+}
+
+#product-cards p {
+    color: #49270e;
+}
+
+#product-cards h6 {
+    color: #321805;
+}
+
+/* PRODUCT ACTION BUTTON */
+#product-cards h6 span button {
+    width: auto;
+    min-width: 100px;
+    height: 34px;
+    padding: 5px 12px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    float: right;
+}
+
+/* GALLERY OVERLAY */
+#gallary .card {
+    background: #573818;
+}
+
+#gallary .overlay {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 22px 15px;
+    margin: 0;
+    opacity: 0;
+    background: linear-gradient(
+        transparent,
+        rgba(30,14,3,.95)
+    );
+    transform: translateY(15px);
+    transition: .35s ease;
+}
+
+#gallary .card:hover .overlay {
+    opacity: 1;
+    margin: 0;
+    transform: translateY(0);
+}
+
+/* BANNER */
+.banner {
+    border-top: 1px solid #ffda8a55;
+    border-bottom: 1px solid #ffda8a55;
+    box-shadow: 0 12px 35px #0008;
+    background-position: center;
+}
+
+.banner .content h2,
+.banner .content h3 {
+    color: var(--gold);
+    text-shadow: 0 3px 10px #000;
+}
+
+.banner .content p {
+    color: var(--cream);
+    line-height: 1.8;
+}
+
+#btnorder button,
+#bt button {
+    min-height: 42px;
+    padding: 8px 18px;
+    letter-spacing: 2px;
+}
+
+/* CONTACT FORM */
+#contact input,
+#contact textarea {
+    color: white;
+    background: linear-gradient(145deg, #603b1e, #38200e);
+    border: 1px solid #b98443;
+    border-radius: 10px;
+    padding: 13px 15px;
+    box-shadow: inset 0 3px 8px #0004;
+    transition: .3s ease;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow:
+        0 0 0 3px #ffda8a22,
+        inset 0 2px 6px #0004;
+}
+
+#contact input::placeholder,
+#contact textarea::placeholder {
+    color: #ead0ad;
+}
+
+#messagebtn button {
+    min-height: 44px;
+    width: 210px;
+    letter-spacing: 2px;
+}
+
+/* FOOTER */
+#footer {
+    background: linear-gradient(
+        135deg,
+        #1e0e03,
+        #573818,
+        #2e1700
+    );
+    border-top: 1px solid #ffda8a55;
+    box-shadow: 0 -10px 30px #0003;
+}
+
+#footer h1 {
+    color: var(--gold);
+}
+
+#footer .icons i {
+    box-shadow: 0 4px 0 #251205;
+}
+
+#footer .icons i:hover {
+    transform: translateY(-5px) rotate(-5deg);
+    box-shadow: 0 8px 0 #251205;
+}
+
+/* BACK TO TOP */
+.arrow {
+    width: 50px;
+    background: linear-gradient(145deg, #f5c16a, #985417);
+    color: white;
+    border: 1px solid var(--gold);
+    box-shadow: 0 5px 0 #54290b, 0 8px 15px #0005;
+    transition: .3s ease;
+}
+
+.arrow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 9px 0 #54290b, 0 12px 20px #0005;
+}
+
+/* ACCESSIBILITY */
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+}
+
+/* MOBILE RESPONSIVE */
+@media screen and (max-width: 768px) {
+    #navbar {
+        padding: 12px 18px;
+    }
+
+    .home {
+        height: auto;
+        min-height: 88vh;
+        padding: 45px 18px;
+    }
+
+    .home .content,
+    .banner .content {
+        margin: 20px 10px;
+        text-align: center;
+    }
+
+    .content h3,
+    .content h2 {
+        font-size: clamp(30px, 7vw, 46px);
+    }
+
+    .home .img img {
+        max-width: 420px;
+    }
+
+    .banner {
+        height: auto;
+        min-height: 70vh;
+        padding: 30px 15px;
+    }
+
+    .banner .content h2 {
+        font-size: 36px;
+    }
+
+    #about p {
+        font-size: 16px;
+    }
+
+    .arrow {
+        right: 18px;
+        bottom: 22px;
+    }
+}
+
+/* RESPECT REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dan Chicken Shop</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fffaf6;
+            color: #49332f;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #fff;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px #0000000a;
+        }
+
+        .logo {
+            color: #d94b30;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #49332f;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #d94b30;
+        }
+
+        .hero {
+            min-height: 480px;
+            padding: 70px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            background: #ffe8dc;
+        }
+
+        .hero-content {
+            max-width: 520px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.15;
+            margin: 15px 0;
+        }
+
+        .hero p {
+            margin-bottom: 25px;
+            color: #755c57;
+        }
+
+        .hero img {
+            width: 42%;
+            max-width: 400px;
+            height: 350px;
+            border-radius: 50% 50% 15px 15px;
+            object-fit: cover;
+        }
+
+        .tag {
+            color: #d94b30;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 13px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #d94b30;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background: #a92f1b;
+            color: white;
+        }
+
+        section {
+            padding: 65px 8%;
+            scroll-margin-top: 75px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #8c7770;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px #55352a0d;
+            transition: transform .2s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            padding: 8px;
+            background: #fff0e8;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-info h3 {
+            font-size: 18px;
+        }
+
+        .product-info p {
+            font-size: 13px;
+            color: #88736d;
+            margin: 8px 0;
+        }
+
+        .price {
+            color: #d94b30;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .product .btn {
+            padding: 9px 17px;
+            font-size: 13px;
+        }
+
+        .gallery {
+            background: #ffe8dc;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform .2s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-content img {
+            width: 45%;
+            border-radius: 15px;
+        }
+
+        .about-content h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .about-content p {
+            color: #755c57;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            background: #ffe8dc;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 1px solid #e4c9c8;
+            border-radius: 8px;
+            font: inherit;
+            background: white;
+        }
+
+        .contact textarea {
+            resize: vertical;
+        }
+
+        footer {
+            text-align: center;
+            background: #49332f;
+            color: white;
+            padding: 30px 15px;
+        }
+
+        footer p {
+            color: #ead6d2;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                padding: 18px 5%;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0;
+                font-size: 13px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 6%;
+            }
+
+            .hero img {
+                width: 85%;
+                height: 260px;
+            }
+
+            section {
+                padding: 45px 6%;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product img {
+                height: 250px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid img {
+                height: 250px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-content img {
+                width: 100%;
+            }
+
+            .section-title h2 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">Dan Chicken Shop</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#products">Menu</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- HOME -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="tag">FRESH AND CRISPY EVERY DAY</span>
+
+            <h1>Delicious Chicken, Made With Love!</h1>
+
+            <p>
+                Enjoy crispy fried chicken, juicy chicken wings,
+                and tasty chicken meals made fresh for you.
+                Perfect for family meals, friends, and every occasion!
+            </p>
+
+            <a href="#products" class="btn">Explore Our Menu</a>
+        </div>
+
+        <img src="image/chicken-main.jpg"
+             alt="Delicious crispy fried chicken">
+    </section>
+
+    <!-- MENU / PRODUCTS -->
+    <section id="products">
+        <div class="section-title">
+            <span class="tag">OUR SPECIALTIES</span>
+            <h2>Our Best-Selling Chicken</h2>
+            <p>Hot, crispy, juicy, and full of flavor!</p>
+        </div>
+
+        <div class="products">
+
+            <div class="product">
+                <img src="image/fried-chicken.jpg"
+                     alt="Crispy fried chicken">
+
+                <div class="product-info">
+                    <h3>Crispy Fried Chicken</h3>
+                    <p>Golden and crunchy outside, juicy and tender inside.</p>
+                    <div class="price">?99.00</div>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="image/chicken-wings.jpg"
+                     alt="Chicken wings">
+
+                <div class="product-info">
+                    <h3>Chicken Wings</h3>
+                    <p>Flavorful wings perfect for sharing with friends.</p>
+                    <div class="price">?120.00</div>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="image/chicken-burger.jpg"
+                     alt="Chicken burger">
+
+                <div class="product-info">
+                    <h3>Chicken Burger</h3>
+                    <p>A crispy chicken fillet served in a soft burger bun.</p>
+                    <div class="price">?85.00</div>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="image/chicken-meal.jpg"
+                     alt="Chicken rice meal">
+
+                <div class="product-info">
+                    <h3>Chicken Rice Meal</h3>
+                    <p>A satisfying chicken meal served with warm rice.</p>
+                    <div class="price">?110.00</div>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="section-title">
+            <span class="tag">MADE FRESH FOR YOU</span>
+            <h2>Our Chicken Gallery</h2>
+            <p>Take a look at our delicious meals.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <img src="image/fried-chicken.jpg"
+                 alt="Golden fried chicken">
+
+            <img src="image/chicken-wings.jpg"
+                 alt="Crispy chicken wings">
+
+            <img src="image/chicken-burger.jpg"
+                 alt="Chicken burger">
+
+            <img src="image/chicken-meal.jpg"
+                 alt="Chicken rice meal">
+
+            <img src="image/spicy-chicken.jpg"
+                 alt="Spicy fried chicken">
+
+            <img src="image/chicken-family.jpg"
+                 alt="Chicken meal for sharing">
+        </div>
+    </section>
+
+    <!-- ABOUT US -->
+    <section id="about">
+        <div class="about-content">
+            <img src="image/chicken-about.jpg"
+                 alt="Freshly prepared chicken meals">
+
+            <div>
+                <span class="tag">ABOUT OUR SHOP</span>
+
+                <h2>Good Food, Great Taste, Happy Customers</h2>
+
+                <p>
+                    Welcome to Dan Chicken Shop! We serve delicious
+                    chicken meals prepared with care to give every
+                    customer a satisfying food experience.
+                </p>
+
+                <p>
+                    From crispy fried chicken to tasty wings and
+                    filling rice meals, we want to make every meal
+                    special. Whether you are eating alone or sharing
+                    with family and friends, we have something
+                    delicious for you.
+                </p>
+
+                <a href="#contact" class="btn">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <span class="tag">LET'S TALK</span>
+            <h2>Order Your Favorite Chicken</h2>
+            <p>Send us your order or ask us a question!</p>
+        </div>
+
+        <form id="contactForm">
+            <input
+                type="text"
+                id="customerName"
+                placeholder="Your Name"
+                required>
+
+            <input
+                type="email"
+                id="customerEmail"
+                placeholder="Your Email"
+                required>
+
+            <input
+                type="tel"
+                id="customerPhone"
+                placeholder="Your Phone Number"
+                required>
+
+            <input
+                type="text"
+                id="customerOrder"
+                placeholder="Chicken meal you want to order"
+                required>
+
+            <textarea
+                id="customerMessage"
+                rows="5"
+                placeholder="Your Message or Delivery Address"
+                required></textarea>
+
+            <button type="submit" class="btn">
+                Send Order
+            </button>
+        </form>
+
+        <p id="formMessage"
+           style="text-align:center; margin-top:15px;">
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <h2>Dan Chicken Shop</h2>
+
+        <p>Fresh, crispy, and delicious in every bite!</p>
+
+        <p>&copy; 2026 Dan Chicken Shop. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.getElementById("contactForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                document.getElementById("formMessage").textContent =
+                    "Thank you for your order! This is a demo form. Please contact the shop to confirm your order.";
+
+                this.reset();
+            });
+    </script>
+
+</body>
+</html>
